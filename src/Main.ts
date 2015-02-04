@@ -31,6 +31,7 @@ class Main extends egret.DisplayObjectContainer{
      * 加载进度界面
      */
     private loadingView:LoadingUI;
+    private m_startBtn: egret.Bitmap;
 
     public constructor() {
         super();
@@ -87,12 +88,28 @@ class Main extends egret.DisplayObjectContainer{
      */
     private createScene():void{
 
-        //游戏场景层，游戏场景相关内容可以放在这里面。
+        var width:number = this.stage.width;
+        var height: number = this.stage.height;
+
         this.gameLayer = new egret.DisplayObjectContainer();
         this.addChild(this.gameLayer);
         var bitmap:egret.Bitmap = new egret.Bitmap();
         bitmap.texture = RES.getRes("lucky_draw_bg");
+        bitmap.x = width * 0.5;
+        bitmap.y = height * 0.5;
+        bitmap.anchorX = bitmap.anchorY = 0.5;
         this.gameLayer.addChild(bitmap);
+
+        var startBtn: egret.Bitmap = new egret.Bitmap();
+        startBtn.texture = RES.getRes("lucky_draw_start");
+        startBtn.x = width * 0.5;
+        startBtn.y = height * 0.5;
+        startBtn.anchorX = startBtn.anchorY = 0.5;
+        startBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onStartTouched, this);
+        this.gameLayer.addChild(startBtn);
+        this.m_startBtn = startBtn;
+
+        //create 9 block items
 
         //GUI的组件必须都在这个容器内部,UIStage会始终自动保持跟舞台一样大小。
         this.guiLayer = new egret.gui.UIStage();
@@ -114,6 +131,16 @@ class Main extends egret.DisplayObjectContainer{
         egret.gui.Alert.show("这是一个GUI弹窗!","弹窗")
     }
     */
+
+    private onStartTouched(event: egret.TouchEvent): void
+    {
+        if (event.target == this.m_startBtn)
+        {
+            this.m_startBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onStartTouched, this);
+            //TODO: start action
+
+        }
+    }
 }
 
 
