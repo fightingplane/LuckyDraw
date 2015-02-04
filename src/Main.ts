@@ -91,13 +91,14 @@ class Main extends egret.DisplayObjectContainer{
         this.gameLayer = new egret.DisplayObjectContainer();
         this.addChild(this.gameLayer);
         var bitmap:egret.Bitmap = new egret.Bitmap();
-        bitmap.texture = RES.getRes("bgImage");
+        bitmap.texture = RES.getRes("lucky_draw_bg");
         this.gameLayer.addChild(bitmap);
 
         //GUI的组件必须都在这个容器内部,UIStage会始终自动保持跟舞台一样大小。
         this.guiLayer = new egret.gui.UIStage();
         this.addChild(this.guiLayer);
 
+/*        
         var button:egret.gui.Button = new egret.gui.Button();
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
@@ -105,11 +106,14 @@ class Main extends egret.DisplayObjectContainer{
         button.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onButtonClick,this);
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         this.guiLayer.addElement(button);
+*/
     }
 
+    /*
     private onButtonClick(event:egret.TouchEvent):void{
         egret.gui.Alert.show("这是一个GUI弹窗!","弹窗")
     }
+    */
 }
 
 
