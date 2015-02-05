@@ -32,6 +32,7 @@ class Main extends egret.DisplayObjectContainer{
      */
     private loadingView:LoadingUI;
     private m_startBtn: egret.Bitmap;
+    private m_selector: egret.Bitmap;
 
     public constructor() {
         super();
@@ -88,18 +89,18 @@ class Main extends egret.DisplayObjectContainer{
      */
     private createScene():void{
 
-        var width:number = this.stage.width;
-        var height: number = this.stage.height;
+        var width:number = this.stage.stageWidth;
+        var height:number = this.stage.stageHeight;
 
         this.gameLayer = new egret.DisplayObjectContainer();
         this.addChild(this.gameLayer);
         var bitmap:egret.Bitmap = new egret.Bitmap();
         bitmap.texture = RES.getRes("lucky_draw_bg");
-        bitmap.x = width * 0.5;
-        bitmap.y = height * 0.5;
         bitmap.anchorX = bitmap.anchorY = 0.5;
+        bitmap.x = width * 0.5;
+        bitmap.y = height * 0.5;        
         this.gameLayer.addChild(bitmap);
-
+        
         var startBtn: egret.Bitmap = new egret.Bitmap();
         startBtn.texture = RES.getRes("lucky_draw_start");
         startBtn.x = width * 0.5;
@@ -110,6 +111,60 @@ class Main extends egret.DisplayObjectContainer{
         this.m_startBtn = startBtn;
 
         //create 9 block items
+        var offset: number = 2;
+        var b1: Block = new Block(Block.BLOCK_TYPE_NO_LUCK, 1);
+        var szBlockHalfWidth:number = b1.width * 0.5;
+        var szBlockHalfHeight:number = b1.height * 0.5;
+        var szStartBtnHalfWidth:number = startBtn.width * 0.5;
+        var szStartBtnHalfHeight: number = startBtn.height * 0.5;
+
+        b1.x = startBtn.x - szBlockHalfWidth - szStartBtnHalfWidth - offset;
+        b1.y = startBtn.y;
+        this.gameLayer.addChild(b1);
+
+        var b2: Block = new Block(Block.BLOCK_TYPE_MONEY, 1);
+        b2.x = startBtn.x - szBlockHalfWidth - szStartBtnHalfWidth - offset;
+        b2.y = startBtn.y - szBlockHalfHeight - szStartBtnHalfHeight - offset;
+        this.gameLayer.addChild(b2);
+
+        var b3: Block = new Block(Block.BLOCK_TYPE_NO_LUCK, 2);
+        b3.x = startBtn.x;
+        b3.y = startBtn.y - szBlockHalfHeight - szStartBtnHalfHeight - offset;
+        this.gameLayer.addChild(b3);
+
+        var b4: Block = new Block(Block.BLOCK_TYPE_MONEY, 5);
+        b4.x = startBtn.x + szBlockHalfWidth + szStartBtnHalfWidth + offset;
+        b4.y = startBtn.y - szBlockHalfHeight - szStartBtnHalfHeight - offset;
+        this.gameLayer.addChild(b4);
+
+        var b5: Block = new Block(Block.BLOCK_TYPE_NO_LUCK, 1);
+        b5.x = startBtn.x + szBlockHalfWidth + szStartBtnHalfWidth + offset;
+        b5.y = startBtn.y;
+        this.gameLayer.addChild(b5);
+
+        var b6: Block = new Block(Block.BLOCK_TYPE_MONEY, 10);
+        b6.x = startBtn.x + szBlockHalfWidth + szStartBtnHalfWidth + offset;
+        b6.y = startBtn.y + szBlockHalfHeight + szStartBtnHalfHeight + offset;
+        this.gameLayer.addChild(b6);
+
+        var b7: Block = new Block(Block.BLOCK_TYPE_NO_LUCK, 2);
+        b7.x = startBtn.x;
+        b7.y = startBtn.y + szBlockHalfWidth + szStartBtnHalfWidth + offset;
+        this.gameLayer.addChild(b7);
+
+        var b8: Block = new Block(Block.BLOCK_TYPE_MONEY, 20);
+        b8.x = startBtn.x - szBlockHalfWidth - szStartBtnHalfWidth - offset;
+        b8.y = startBtn.y + szBlockHalfHeight + szStartBtnHalfHeight + offset;
+        this.gameLayer.addChild(b8);
+
+        var selector: egret.Bitmap = new egret.Bitmap();
+        selector.texture = RES.getRes("lucky_draw_selector");
+        selector.x = b1.x;
+        selector.y = b1.y;
+        selector.anchorX = selector.anchorY = 0.5;
+        selector.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onStartTouched, this);
+        this.gameLayer.addChild(selector);
+        this.m_selector = selector;
 
         //GUI的组件必须都在这个容器内部,UIStage会始终自动保持跟舞台一样大小。
         this.guiLayer = new egret.gui.UIStage();
@@ -136,6 +191,7 @@ class Main extends egret.DisplayObjectContainer{
     {
         if (event.target == this.m_startBtn)
         {
+            egret.Logger.info("Start button touched");
             this.m_startBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onStartTouched, this);
             //TODO: start action
 

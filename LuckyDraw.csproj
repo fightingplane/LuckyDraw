@@ -299,6 +299,7 @@
     <Content Include="resource\assets\lucky_draw_money_5.png" />
     <Content Include="resource\assets\lucky_draw_money_unlucky_1.png" />
     <Content Include="resource\assets\lucky_draw_money_unlucky_2.png" />
+    <Content Include="resource\assets\lucky_draw_selector.png" />
     <Content Include="resource\assets\lucky_draw_start.png" />
     <Content Include="resource\assets\lucky_draw_wallet.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_disabled.png" />

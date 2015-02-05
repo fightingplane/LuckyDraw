@@ -1,7 +1,7 @@
 {
     "groups": [
         {
-            "keys": "button_disabled_png,button_down_png,button_normal_png,panel_back_png,progressbar_fill_png,progressbar_track_png,panel_headeback_png,bgImage,closebtn_down_png,closebtn_up_png,closebtn_disabled_png,lucky_draw_bg,lucky_draw_effect,lucky_draw_flower,lucky_draw_money_1,lucky_draw_money_5,lucky_draw_money_10,lucky_draw_money_20,lucky_draw_money_unlucky_1,lucky_draw_money_unlucky_2,lucky_draw_start,lucky_draw_wallet",
+            "keys": "button_disabled_png,button_down_png,button_normal_png,panel_back_png,progressbar_fill_png,progressbar_track_png,panel_headeback_png,bgImage,closebtn_down_png,closebtn_up_png,closebtn_disabled_png,lucky_draw_bg,lucky_draw_effect,lucky_draw_flower,lucky_draw_money_1,lucky_draw_money_5,lucky_draw_money_10,lucky_draw_money_20,lucky_draw_money_unlucky_1,lucky_draw_money_unlucky_2,lucky_draw_start,lucky_draw_wallet,lucky_draw_selector",
             "name": "preload"
         }
     ],
@@ -116,6 +116,11 @@
             "name": "lucky_draw_wallet",
             "type": "image",
             "url": "assets/lucky_draw_wallet.png"
+        },
+        {
+            "name": "lucky_draw_selector",
+            "type": "image",
+            "url": "assets/lucky_draw_selector.png"
         }
     ]
 }
